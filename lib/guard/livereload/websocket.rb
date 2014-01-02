@@ -11,7 +11,7 @@ module Guard
         parser << data
         if parser.http_method != 'GET' || parser.upgrade?
           super #pass the request to websocket
-        elsif parser.request_path == '/livereload.js'
+        elsif parser.request_url == '/livereload.js'
           _serve_file(_livereload_js_file)
         elsif File.exist?(parser.request_path[1..-1])
           _serve_file(parser.request_path[1..-1]) # Strip leading slash
